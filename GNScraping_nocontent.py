@@ -10,12 +10,14 @@ import pandas as pd
 from datetime import datetime
 import logging
 
+# change it to current directory if necessary
+curdir = os.getcwd()
 
-stdout_file = "/Users/jadonng/Desktop/Computer_Science/Data_Scraping/Google_News/stdout.log"
+stdout_file = f"{curdir}/stdout.log"
 logging.basicConfig(filename=stdout_file, level=logging.INFO,
                     format='%(asctime)s [%(levelname)s] %(message)s')
 
-error_file = "/Users/jadonng/Desktop/Computer_Science/Data_Scraping/Google_News/stderror.log"
+error_file = f"{curdir}/stderror.log"
 logging.basicConfig(filename=error_file, level=logging.DEBUG,
                     format='%(asctime)s [%(levelname)s] %(message)s')
 
@@ -159,7 +161,7 @@ for cur_topic, topic_link in TOPICS.items():
 
         logging.info(f"{cur_topic}_{month_day_year}: Scraped {len(all_articles)} articles")
 
-        os.chdir('/Users/jadonng/Desktop/Computer_Science/Data_Scraping/Google_News')
+        os.chdir(curdir)
         df_articles = pd.DataFrame(all_articles)
         # file_name = f'{cur_topic}_{month_day_year}.csv'
         # final_path = os.path.join(application_path, file_name)
